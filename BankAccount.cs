@@ -11,6 +11,8 @@ namespace DigitalBank
         public decimal Balance { get; }
         public DateTime DateCreated { get;}
 
+        private List<Transaction> transactions = new List<Transaction>();
+
         public BankAccount(string ownerName, decimal initialBalance)
         {
             this.DateCreated = DateTime.Now;
