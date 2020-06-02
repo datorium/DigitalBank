@@ -9,7 +9,18 @@ namespace DigitalBank
     {
         public string Number { get; }
         public string Owner { get; }
-        public decimal Balance { get; }
+        public decimal Balance
+        {
+            get
+            {
+                decimal balance = 0;
+                foreach(Transaction t in transactions)
+                {
+                    balance += t.Amount;
+                }
+                return balance;
+            }
+        }
         public DateTime DateCreated { get; }
 
         private static int accountNumber = 123456789;
@@ -22,18 +33,19 @@ namespace DigitalBank
             this.Number = "LV" + accountNumber.ToString();
             accountNumber++;
             this.Owner = ownerName;
-            this.Balance = initialBalance;
+            this.MakeDeposit(initialBalance, "Initial balance");
         }
 
-        public void AddMoney(decimal amount, DateTime date, string notes)
+        public void MakeDeposit(decimal amount, string notes)
         {
-
+            Transaction deposit = new Transaction(amount, DateTime.Now, notes);
+            transactions.Add(deposit);
         }
 
-        public void TakeMoney(decimal amount, DateTime date, string notes)
+        public void MakeWithdrawal(decimal amount, string notes)
         {
-
+            Transaction withdrawal = new Transaction(-amount, DateTime.Now, notes);
+            transactions.Add(withdrawal);
         }
-
     }
 }
