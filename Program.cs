@@ -7,8 +7,14 @@ namespace DigitalBank
     {
         static void Main(string[] args)
         {
-            BankAccount account = new BankAccount("Jenifer", 100);
+            BankAccount account;
+            
+            account = new BankAccount("Jenifer", 100);
             Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
-        }   
+
+            account = new BankAccount("Jenifer", 2800);
+            Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
+
+        }
     }
 }
