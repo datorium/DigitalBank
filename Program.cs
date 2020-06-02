@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DigitalBank
@@ -7,20 +8,16 @@ namespace DigitalBank
     {
         static void Main(string[] args)
         {
-            BankAccount account;
+
+            List<BankAccount> accounts = new List<BankAccount>();
             
-            account = new BankAccount("Jenifer", 100);
-            Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
+            accounts.Add(new BankAccount("Jenifer", 100));
 
-            account.MakeDeposit(400, "Salary");
-            Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
-
-            account.MakeWithdrawal(50, "Online game");
-            Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
-
-            account.MakeWithdrawal(150, "Online course");
-            Console.WriteLine($"Owner {account.Owner} has {account.Balance} euro(s) in account Nr. {account.Number} created on {account.DateCreated.ToString("dd/MM/yyyy")}.");
-
+            accounts.Add(new BankAccount("Anna", 1600));
+            accounts[1].MakeDeposit(1600, "Salary");
+            accounts[1].MakeWithdrawal(140, "Clothes");
+            accounts[1].MakeWithdrawal(60, "Spotify subscription");
+            Console.WriteLine($"Owner {accounts[1].Owner} has {accounts[1].Balance} euro(s) in account Nr. {accounts[1].Number} created on {accounts[1].DateCreated.ToString("dd/MM/yyyy")}.");
         }
     }
 }
