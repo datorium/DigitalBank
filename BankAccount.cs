@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Transactions;
 
@@ -34,6 +35,7 @@ namespace DigitalBank
             accountNumber++;
             this.Owner = ownerName;
             this.MakeDeposit(initialBalance, "Initial balance");
+            Console.WriteLine($"Account for {this.Owner} is created on {this.DateCreated.ToString("dd/MM/yyyy hh:mm:ss")}");
         }
 
         public void MakeDeposit(decimal amount, string notes)
@@ -46,6 +48,25 @@ namespace DigitalBank
         {
             Transaction withdrawal = new Transaction(-amount, DateTime.Now, notes);
             transactions.Add(withdrawal);
+        }
+
+        public void PrintStatus()
+        {
+            Console.WriteLine($"Owner {this.Owner} has {this.Balance} euro(s) in account Nr. {this.Number} created on {this.DateCreated.ToString("dd/MM/yyyy")}.");
+        }
+
+        public void PrintStatement()
+        {
+            StringBuilder report = new StringBuilder();
+            decimal balance = 0;
+            report.AppendLine("Date\t\tAmount\tBalance\tNotes");
+
+            foreach(Transaction t in transactions)
+            {
+                balance += t.Amount;
+                report.AppendLine($"{t.Date.ToShortDateString()}\t{t.Amount}\t{balance}\t{t.Notes}");
+            }
+            Console.WriteLine(report.ToString());
         }
     }
 }
