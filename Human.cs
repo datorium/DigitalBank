@@ -43,5 +43,10 @@ namespace DigitalBank
                 Console.WriteLine("The heigh must be positive");
             }
         }
+
+        public void Introduce()
+        {
+            Console.WriteLine($"Hi, ny name is {this.Name} and my eye color is {this.EyeColor}");
+        }
     }
 }

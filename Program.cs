@@ -31,6 +31,11 @@ namespace DigitalBank
 
             clients[2].AddNumbersFromMemory();
             clients[2].AddNumbers(20, 15);
+            
+            foreach(Human c in clients)
+            {
+                c.Introduce();
+            }            
         }
     }
 }
